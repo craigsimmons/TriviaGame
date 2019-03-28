@@ -35,7 +35,6 @@ $("#submit").click(function() {
 function startCountdown() {
     clearInterval (intervalId);
     intervalId = setInterval(gameTimer, 1000);
-
 }
 
 function endCountdown() { 
@@ -66,15 +65,50 @@ function showResults(){
     $("#results").text($resultsContainer);
 }
 
-function buildQuiz(){
-
-}
-
 function displayQuestion(){
+    // use flip cards? 
+    //get input from quizMaterials Obj
+    // display question and answer list with radio buttons
 
 }
 
+function correctAnswer(){
+    // display right answer - highlight correct guess in green,
+}
+function wrongAnswer(){
+    // display bad answer - highlight correct one in green, highligh user selection in red
+}
+
+function buildQuiz() {
+}
+/* var quizMaterialObj {} defined in quiz.js
+
+    1. Get quizMaterialObj {} for processing (question, answerChoices, correctAnswer) 
+        var currentQuestionStr = "";  // the question (do I need an array here for entire object representing one question )
+        var questionNumberInt; // may not need this
+        var answerChoicesArr = []; // all 4 answers 
+        var correctAnswerStr = []; // single line radio button
+      
+    2. would like to use a forEach() on the quizMaterialObj
+        a. pull question, list of answers, correct answer together
+        b. create HTML output 
+
+    3. Create HTML OUTPUT 
+        var quizOutputArr = [];  // place to store the HTML output
+            <label>
+            <input type="radio">
+            </label>
+    4. put quiz content into quizOutputArr and display;
+     a. questionStr , answerChoicesArr, correctAnswerStr
+
+    5. add the question and its answers to the output
+         quizOutputArr ?  use push()
+    6. join html and content and display
+    quizdiv.innerHTML = output.join('');
+        
+*/
+    
 
 
-
+// ebd brcket for document.ready -don't erase
 });

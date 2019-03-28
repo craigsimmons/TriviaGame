@@ -1,4 +1,4 @@
-var quizMaterial = [
+var quizMaterialObj = [
     {
       question: "In what century did the 100 years war begin?",
       answers: {
