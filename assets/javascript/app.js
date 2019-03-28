@@ -10,11 +10,11 @@ var intervalId;
 /* Event Handlers */
 
 // not an event handler per se; might not need
-// $("#gametimer").text("Timer:  " + " " + secondsLeft);
 
 $("#start").click(function() {
-    // $("#gametimer").text("Timer from start button:  " + secondsLeft);
-    $("#gametimer").text("  " + secondsLeft);
+    $("#gametimer").text(secondsLeft);
+    $("#quiz").text("Quiz Content Placeholder");
+    $("#results").text("Results Content Placeholder");
     startCountdown();
 });
 
@@ -26,8 +26,8 @@ $("#end").click(function() {
 });
 
 $("#submit").click(function() {
-   $("#gametimer").text("Submit it!");
-    testContainer();
+    $("#gametimer").text("Submit it!");
+    showResults();
 });
 
 /* functions and core logic */
@@ -41,14 +41,11 @@ function startCountdown() {
 function endCountdown() { 
     clearInterval (intervalId);
     secondsLeft = 6;
-    // setTimeout(gamePause, 5000);
-    // startCountdown();
 }
 
 function gameTimer() {
     secondsLeft --;
     console.log(secondsLeft);
-    // $("#gametimer").text("Timer in GameTimer != 0:  " + secondsLeft);
     $("#gametimer").text("  " + secondsLeft);
     if (secondsLeft === 0) {
         $("#gametimer").text("Time's Up!");
@@ -61,13 +58,23 @@ function gamePause() {
     // setTimeout(gamePause, 5000);  - USE THIS TO CALL TIMEOUT
     $("#gametimer").text("we pause for 5 seconds");
 }
-
-function testContainer() {
-    var quizContainer = $("#quizdiv").html();
-    var resultsContainer = $("#resultsdiv").html();
-    $("#quizdiv").text(quizContainer);
-    $("#resultsdiv").text(resultsContainer);
+//  why not working???
+function showResults(){
+    var $quizContainer = $("#quizdiv").html();
+    var $resultsContainer = $("#resultsdiv").html();
+    $("#quiz").text($quizContainer);
+    $("#results").text($resultsContainer);
 }
+
+function buildQuiz(){
+
+}
+
+function displayQuestion(){
+
+}
+
+
 
 
 });
