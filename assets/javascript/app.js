@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
 //Quiz data
 var quizMaterialArr = [
     {
@@ -50,9 +49,7 @@ var quizMaterialArr = [
       */
   ];
 
-
-    /* Variables */
-// 6 seconds for testing only; change to 20 for release
+/* Variables */
 var secondsLeftInt = 21;
 var intervalId;
 var correctCountInt = 0;
@@ -68,35 +65,53 @@ var positionId = "";
 /* Event Handlers */
 
 $("#start").click(function() {
-    $("#gametimer").text(secondsLeftInt)
+    $("#gametimer").text(secondsLeftInt);
+    $("#goodanswer").text(correctCountInt);
+    $("#badanswer").text(incorrectCountInt);
     buildQuiz();
     startCountdown();
+    // disable start button
 });
 
 $("#end").click(function() {
-    $("#timerlabel").html("");
     $("#gametimer").text("Game Over!");
-    console.log("Game Over");
+    $("#goodanswer").text(correctCountInt);
+  $("#badanswer").text(incorrectCountInt);
     endCountdown();
-    secondsLeftInt = 21;
+    resetGame();
+    // enable start button
 });
 
 $("#submitbtn").click(function() {
   endCountdown();
+  $("#gametimer").text(secondsLeftInt);
   evalSubmission();
 });
 
 /* functions and core logic */
 
 function startCountdown() {
-    secondsLeft = 21;
-    clearInterval (intervalId);
+    secondsLeftInt = 21;
+    clearInterval(intervalId);
     intervalId = setInterval(gameTimer, 1000);
 }
 
-function endCountdown() { 
-    clearInterval (intervalId);
-    //secondsLeft = 20;
+function endCountdown() {
+    clearInterval(intervalId);
+}
+
+function resetGame() {
+  $("#gametimer").text("Game Over");
+  var secondsLeftInt = 21;
+  var quizQuestionStr = "";
+  var answerAStr = "";
+  var answerBStr = "";
+  var answerCStr = "";
+  var answerDStr = "";
+  var correctAnswerStr = "";
+  $("#goodanswer").text(correctCountInt);
+  $("#badanswer").text(incorrectCountInt);
+
 }
 
 function evalSubmission(){
@@ -106,11 +121,17 @@ function evalSubmission(){
   if  (submitValue === correctAnswerStr)  {
     $("#gametimer").text("Correct");
     correctCountInt = correctCountInt + 1;
+    $("#goodanswer").text(correctCountInt)
+    removeHTML();
+    buildQuiz();
+    // startCountdown();
   }
   else {
     $("#gametimer").text("Incorrect");
     incorrectCountInt = incorrectCountInt + 1;
-    $(".showhide").hide();
+    $("#badanswer").text(incorrectCountInt)
+    removeHTML();
+    buildQuiz();
   }
 }
 
@@ -119,19 +140,28 @@ function gameTimer() {
     $("#gametimer").text("Time's Up!");
     console.log("Time's Up");
     endCountdown();
+    incorrectCountInt = incorrectCountInt + 1;
+    $("#badanswer").text(incorrectCountInt)
+    removeHTML();
+    // buildQuiz(); how to refresh page w/o stack overflow
     }
   else {
     secondsLeftInt --;
     console.log(secondsLeftInt);
-    $("#gametimer").text("  " + secondsLeftInt);
+    $("#gametimer").text(secondsLeftInt);
     }
 }
-
+/*
 function gamePause() {
-  setTimeout(gamePause, 5000);
-    $("#gametimer").text("we pause for 5 seconds");
-}
+  var pauseState = setTimeout(function 3000);
 
+   // $("#gametimer").text("3 sec pause");
+}
+function gameUnpause() {
+  setTimeout(pauseState);
+   // $("#gametimer").text("3 sec pause");
+}
+*/
 function showResults(){
     var $quizContainer = $("#quizdiv").html();
     var $resultsContainer = $("#resultsdiv").html();
@@ -139,6 +169,35 @@ function showResults(){
     $("#results").text($resultsContainer);
 }
 
+function buildHTML() {
+  $("#question").html('<p id="question' + positionId + '">' + quizQuestionStr + '</p>');
+  $("#answerA").html('<input type="radio" name="selected" id="q' + positionId + 'answer" value="a">' + 
+  '<label for="q' + positionId + 'answer" value="a">' + answerAStr + '</label>');
+  $("#answerB").html('<input type="radio" name="selected" id="q' + positionId + 'answer" value="b">' + 
+  '<label for="q' + positionId + 'answer" value="b">' + answerBStr + '</label>');
+  $("#answerC").html('<input type="radio" name="selected" id="q' + positionId + 'answer" value="c">' + 
+  '<label for="q' + positionId + 'answer" value="c">' + answerCStr + '</label>');
+  $("#answerD").html('<input type="radio" name="selected" id="q' + positionId + 'answer" value="d">' + 
+  '<label for="q' + positionId + 'answer" value="d">' + answerDStr + '</label>');
+  // $("submitdiv").html('<button id="submitbtn" type="button" class="button btn btn-primary">Submit</button>'); 
+  }
+
+  function removeHTML() {
+    $("#question").html("");
+    $("#answerA").html("");
+    $("#answerB").html("");
+    $("#answerC").html("");
+    $("#answerD").html("");
+  }
+/*
+  function hideHTML() {
+  $("#question").hide();
+  $("#answerA").hide();
+  $("#answerB").hide();
+  $("#answerC").hide();
+  $("#answerD").hide();
+  }
+*/
 function buildQuiz() {
 
   for (var i = 0; i < quizMaterialArr.length; i++) { 
@@ -149,7 +208,7 @@ function buildQuiz() {
     answerCStr = quizMaterialArr[i].answers.c;
     answerDStr = quizMaterialArr[i].answers.d;
     correctAnswerStr = quizMaterialArr[i].correctAnswer;
-    
+    /*
     console.log(quizQuestionStr);
     console.log(answerAStr);
     console.log(answerBStr);
@@ -157,22 +216,9 @@ function buildQuiz() {
     console.log(answerDStr);
     console.log(correctAnswerStr);
     console.log(positionId);
-   
-    $("#question").html('<p id="question' + positionId + '">' + quizQuestionStr + '</p>');
-
-    $("#answerA").html('<input type="radio" name="selected" id="q' + positionId + 'answer" value="a">' + 
-    '<label for="q' + positionId + 'answer" value="a">' + answerAStr + '</label>');
-
-    $("#answerB").html('<input type="radio" name="selected" id="q' + positionId + 'answer" value="b">' + 
-    '<label for="q' + positionId + 'answer" value="b">' + answerBStr + '</label>');
-    $("#answerC").html('<input type="radio" name="selected" id="q' + positionId + 'answer" value="c">' + 
-    '<label for="q' + positionId + 'answer" value="c">' + answerCStr + '</label>');
-    $("#answerD").html('<input type="radio" name="selected" id="q' + positionId + 'answer" value="d">' + 
-    '<label for="q' + positionId + 'answer" value="d">' + answerDStr + '</label>');
-    // $("submitdiv").html('<button id="submitbtn" type="button" class="button btn btn-primary">Submit</button>'); 
-   
-  gameTimer();
-
+   */
+    buildHTML();
+    gameTimer();
   }
 }
 /*
