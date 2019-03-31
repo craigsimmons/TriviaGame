@@ -38,12 +38,6 @@
                         <p id="badanswer" class="displayfont"> 0</p>
                     </div>
                 </div>
-                <div id="quizdiv" class="row">
-                    <p id="quiz"class="displayfont">Quiz Content Placeholder</p>
-                </div>
-                <div id="resultsdiv" class="row">
-                    <p id="results" class="displayfont">Results Content Placeholder</p>
-                </div>
                 <div id="buttondiv" class="row">
                     <div class="col-sm-4"> 
                         <button id="submit" type="button" class="button btn btn-primary">Submit</button>
@@ -55,11 +49,19 @@
                         <button id="end" type="button" class="button btn btn-danger">End</button>
                     </div>   
                 </div>
-                    
+                <div id="quizdiv" class="row">
+                    <form id="hide">
+                        <div id="question"></div>
+                        <div id="answerA"></div>
+                        <div id="answerB"></div>
+                        <div id="answerC"></div>
+                        <div id="answerD"></div>
+                        <div id="correct"></div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-    <script src="./assets/javascript/quiz.js"></script>
     <script src="./assets/javascript/app.js"></script>
 </body>
 

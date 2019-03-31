@@ -1,15 +1,62 @@
 $(document).ready(function() {
-/* Variables */
 
-// # of seconds for this countdown timer
-//1000 will  run it every 1 second
+//Quiz data
+var quizMaterialArr = [
+    {
+      id: "1",
+      question: "In what century did the 100 years war begin?",
+      answers: {
+        a: "15th Century",
+        b: "14th Century",
+        c: "16th Century",
+        d: "17th Century"
+      },
+      correctAnswer: "b"
+    },
+    {
+      id: "2",
+      question: "When did Julius Caesar cross the Rubicon?",
+      answers: {
+        a: "59 BCE",
+        b: "52 BCE",
+        c: "49 BCE",
+        d: "45 BCE",
+      },
+      correctAnswer: "c"
+    },
+    {
+      id: "3",
+      question: "Which English King was beheaded by Parliment in 1649?",
+      answers: {
+        a: "Charles II",
+        b: "James I",
+        c: "Henry VI",
+        d: "Charles I"
+      },
+      correctAnswer: "d"
+    },
+    {
+        id: "4",
+        question: "Who was the lead singer for the Ramones?",
+        answers: {
+          a: "Dee Dee",
+          b: "Johnny",
+          c: "Joey",
+          d: "Kurt"
+        },
+        correctAnswer: "c"
+      }
+  ];
+
+
+    /* Variables */
 // 6 seconds for testing only; change to 20 for release
-var secondsLeft = 6;
+var secondsLeftInt = 20;
 var intervalId;
+var correctCountInt = 0;
+var incorrectCountInt = 0;
 
 /* Event Handlers */
-
-// not an event handler per se; might not need
 
 $("#start").click(function() {
     $("#gametimer").text(secondsLeft);
@@ -27,10 +74,14 @@ $("#end").click(function() {
 
 $("#submit").click(function() {
     $("#gametimer").text("Submit it!");
-    showResults();
+    endCountdown();
+    // showResults();
+    buildQuiz();
 });
 
 /* functions and core logic */
+function submitPressed() { 
+  return false; }
 
 function startCountdown() {
     clearInterval (intervalId);
@@ -39,25 +90,27 @@ function startCountdown() {
 
 function endCountdown() { 
     clearInterval (intervalId);
-    secondsLeft = 6;
+    secondsLeft = 20;
 }
 
 function gameTimer() {
     secondsLeft --;
-    console.log(secondsLeft);
-    $("#gametimer").text("  " + secondsLeft);
-    if (secondsLeft === 0) {
+    console.log(secondsLeftInt);
+    $("#gametimer").text("  " + secondsLeftInt);
+    if (secondsLeftInt === 0) {
         $("#gametimer").text("Time's Up!");
         console.log("Time's Up");
         endCountdown();
+        incorrect++;
     }
+
 }
 
 function gamePause() {
     // setTimeout(gamePause, 5000);  - USE THIS TO CALL TIMEOUT
     $("#gametimer").text("we pause for 5 seconds");
 }
-//  why not working???
+
 function showResults(){
     var $quizContainer = $("#quizdiv").html();
     var $resultsContainer = $("#resultsdiv").html();
@@ -65,50 +118,66 @@ function showResults(){
     $("#results").text($resultsContainer);
 }
 
-function displayQuestion(){
-    // use flip cards? 
-    //get input from quizMaterials Obj
-    // display question and answer list with radio buttons
-
-}
-
-function correctAnswer(){
-    // display right answer - highlight correct guess in green,
-}
-function wrongAnswer(){
-    // display bad answer - highlight correct one in green, highligh user selection in red
-}
-
 function buildQuiz() {
-}
-/* var quizMaterialObj {} defined in quiz.js
+    var quizQuestionStr = "";
+    var answerAStr = "";
+    var answerBStr = "";
+    var answerCStr = "";
+    var answerDStr = "";
+    var correctAnswerStr = "";
+    var positionId = "";
 
-    1. Get quizMaterialObj {} for processing (question, answerChoices, correctAnswer) 
-        var currentQuestionStr = "";  // the question (do I need an array here for entire object representing one question )
-        var questionNumberInt; // may not need this
-        var answerChoicesArr = []; // all 4 answers 
-        var correctAnswerStr = []; // single line radio button
-      
-    2. would like to use a forEach() on the quizMaterialObj
-        a. pull question, list of answers, correct answer together
-        b. create HTML output 
-
-    3. Create HTML OUTPUT 
-        var quizOutputArr = [];  // place to store the HTML output
-            <label>
-            <input type="radio">
-            </label>
-    4. put quiz content into quizOutputArr and display;
-     a. questionStr , answerChoicesArr, correctAnswerStr
-
-    5. add the question and its answers to the output
-         quizOutputArr ?  use push()
-    6. join html and content and display
-    quizdiv.innerHTML = output.join('');
-        
-*/
+  for (var i = 0; i < quizMaterialArr.length; i++) { 
+    positionId = i;
+    quizQuestionStr = quizMaterialArr[i].question;
+    answerAStr = quizMaterialArr[i].answers.a;
+    answerBStr = quizMaterialArr[i].answers.b;
+    answerCStr = quizMaterialArr[i].answers.c;
+    answerDStr = quizMaterialArr[i].answers.d;
+    correctAnswerStr = quizMaterialArr[i].correctAnswer;
     
+    console.log(quizQuestionStr);
+    console.log(answerAStr);
+    console.log(answerBStr);
+    console.log(answerCStr);
+    console.log(answerDStr);
+    console.log(correctAnswerStr);
+
+    $("#question").html('<p id="question' + positionId + '">' + quizQuestionStr + '</p>');
+    $("#answerA").html('<input type="radio" id="q' + positionId + 'answer" value="a">' + 
+    '<label for="q' + positionId + 'answer" value="a">' + answerAStr + '</label>');
+    $("#answerB").html('<input type="radio" id="q' + positionId + 'answer" value="b">' + 
+    '<label for="q' + positionId + 'answer" value="b">' + answerBStr + '</label>');
+    $("#answerC").html('<input type="radio" id="q' + positionId + 'answer" value="c">' + 
+    '<label for="q' + positionId + 'answer" value="c">' + answerCStr + '</label>');
+    $("#answerD").html('<input type="radio" id="q' + positionId + 'answer" value="d">' + 
+    '<label for="q' + positionId + 'answer" value="d">' + answerDStr + '</label>');
+
+  gameTimer();
+
+  }
+}
+/*
+
+quizMaterialArr[i].question  - <p id="quizquestion"class="displayfont">Quiz Question  #1</p>
+    console.log(quizMaterialArr[i].answers.a);
+
+  }
+   for(letter in questions[i].answers){
+
+    // ...add an html radio button
+    answers.push(
+      '<label>'
+        + '<input type="radio" name="question'+i+'" value="'+letter+'">'
+        + letter + ': '
+        + questions[i].answers[letter]
+      + '</label>'
+    );
+  }
+} 
+
+*/
 
 
-// ebd brcket for document.ready -don't erase
+// end brcket for document.ready -don't erase
 });
