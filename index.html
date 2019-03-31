@@ -39,8 +39,8 @@
                     </div>
                 </div>
                 <div id="buttondiv" class="row">
-                    <div class="col-sm-4"> 
-                        <button id="submit" type="button" class="button btn btn-primary">Submit</button>
+                    <div class="col-sm-4">
+                        <button id="submitbtn" type="button" class="button btn btn-primary">Submit</button>
                     </div>
                     <div class="col-sm-4">
                         <button id="start" type="button" class="button btn btn-success">Start</button>
@@ -50,13 +50,14 @@
                     </div>   
                 </div>
                 <div id="quizdiv" class="row">
-                    <form id="hide">
-                        <div id="question"></div>
-                        <div id="answerA"></div>
-                        <div id="answerB"></div>
-                        <div id="answerC"></div>
-                        <div id="answerD"></div>
-                        <div id="correct"></div>
+                    <form id="showhide" onsubmit="evalSubmission()">
+                        <div id="question"></div><br>
+                        <div id="answerA"></div><br>
+                        <div id="answerB"></div><br>
+                        <div id="answerC"></div><br>
+                        <div id="answerD"></div><br>
+                        <div id="correct"></div><br>
+                        <div id="submitdiv"></div>
                     </form>
                 </div>
             </div>

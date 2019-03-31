@@ -13,6 +13,7 @@ var quizMaterialArr = [
       },
       correctAnswer: "b"
     },
+    /*
     {
       id: "2",
       question: "When did Julius Caesar cross the Rubicon?",
@@ -46,22 +47,29 @@ var quizMaterialArr = [
         },
         correctAnswer: "c"
       }
+      */
   ];
 
 
     /* Variables */
 // 6 seconds for testing only; change to 20 for release
-var secondsLeftInt = 20;
+var secondsLeftInt = 21;
 var intervalId;
 var correctCountInt = 0;
 var incorrectCountInt = 0;
+var quizQuestionStr = "";
+var answerAStr = "";
+var answerBStr = "";
+var answerCStr = "";
+var answerDStr = "";
+var correctAnswerStr = "";
+var positionId = "";
 
 /* Event Handlers */
 
 $("#start").click(function() {
-    $("#gametimer").text(secondsLeft);
-    $("#quiz").text("Quiz Content Placeholder");
-    $("#results").text("Results Content Placeholder");
+    $("#gametimer").text(secondsLeftInt)
+    buildQuiz();
     startCountdown();
 });
 
@@ -70,44 +78,57 @@ $("#end").click(function() {
     $("#gametimer").text("Game Over!");
     console.log("Game Over");
     endCountdown();
+    secondsLeftInt = 21;
 });
 
-$("#submit").click(function() {
-    $("#gametimer").text("Submit it!");
-    endCountdown();
-    // showResults();
-    buildQuiz();
+$("#submitbtn").click(function() {
+  endCountdown();
+  evalSubmission();
 });
 
 /* functions and core logic */
-function submitPressed() { 
-  return false; }
 
 function startCountdown() {
+    secondsLeft = 21;
     clearInterval (intervalId);
     intervalId = setInterval(gameTimer, 1000);
 }
 
 function endCountdown() { 
     clearInterval (intervalId);
-    secondsLeft = 20;
+    //secondsLeft = 20;
+}
+
+function evalSubmission(){
+  var submitValue = $('input[name="selected"]:checked').val();
+  console.log(submitValue)
+  console.log(correctAnswerStr)
+  if  (submitValue === correctAnswerStr)  {
+    $("#gametimer").text("Correct");
+    correctCountInt = correctCountInt + 1;
+  }
+  else {
+    $("#gametimer").text("Incorrect");
+    incorrectCountInt = incorrectCountInt + 1;
+    $(".showhide").hide();
+  }
 }
 
 function gameTimer() {
-    secondsLeft --;
+  if (secondsLeftInt === 0) {
+    $("#gametimer").text("Time's Up!");
+    console.log("Time's Up");
+    endCountdown();
+    }
+  else {
+    secondsLeftInt --;
     console.log(secondsLeftInt);
     $("#gametimer").text("  " + secondsLeftInt);
-    if (secondsLeftInt === 0) {
-        $("#gametimer").text("Time's Up!");
-        console.log("Time's Up");
-        endCountdown();
-        incorrect++;
     }
-
 }
 
 function gamePause() {
-    // setTimeout(gamePause, 5000);  - USE THIS TO CALL TIMEOUT
+  setTimeout(gamePause, 5000);
     $("#gametimer").text("we pause for 5 seconds");
 }
 
@@ -119,13 +140,6 @@ function showResults(){
 }
 
 function buildQuiz() {
-    var quizQuestionStr = "";
-    var answerAStr = "";
-    var answerBStr = "";
-    var answerCStr = "";
-    var answerDStr = "";
-    var correctAnswerStr = "";
-    var positionId = "";
 
   for (var i = 0; i < quizMaterialArr.length; i++) { 
     positionId = i;
@@ -142,17 +156,21 @@ function buildQuiz() {
     console.log(answerCStr);
     console.log(answerDStr);
     console.log(correctAnswerStr);
-
+    console.log(positionId);
+   
     $("#question").html('<p id="question' + positionId + '">' + quizQuestionStr + '</p>');
-    $("#answerA").html('<input type="radio" id="q' + positionId + 'answer" value="a">' + 
-    '<label for="q' + positionId + 'answer" value="a">' + answerAStr + '</label>');
-    $("#answerB").html('<input type="radio" id="q' + positionId + 'answer" value="b">' + 
-    '<label for="q' + positionId + 'answer" value="b">' + answerBStr + '</label>');
-    $("#answerC").html('<input type="radio" id="q' + positionId + 'answer" value="c">' + 
-    '<label for="q' + positionId + 'answer" value="c">' + answerCStr + '</label>');
-    $("#answerD").html('<input type="radio" id="q' + positionId + 'answer" value="d">' + 
-    '<label for="q' + positionId + 'answer" value="d">' + answerDStr + '</label>');
 
+    $("#answerA").html('<input type="radio" name="selected" id="q' + positionId + 'answer" value="a">' + 
+    '<label for="q' + positionId + 'answer" value="a">' + answerAStr + '</label>');
+
+    $("#answerB").html('<input type="radio" name="selected" id="q' + positionId + 'answer" value="b">' + 
+    '<label for="q' + positionId + 'answer" value="b">' + answerBStr + '</label>');
+    $("#answerC").html('<input type="radio" name="selected" id="q' + positionId + 'answer" value="c">' + 
+    '<label for="q' + positionId + 'answer" value="c">' + answerCStr + '</label>');
+    $("#answerD").html('<input type="radio" name="selected" id="q' + positionId + 'answer" value="d">' + 
+    '<label for="q' + positionId + 'answer" value="d">' + answerDStr + '</label>');
+    // $("submitdiv").html('<button id="submitbtn" type="button" class="button btn btn-primary">Submit</button>'); 
+   
   gameTimer();
 
   }
@@ -180,4 +198,4 @@ quizMaterialArr[i].question  - <p id="quizquestion"class="displayfont">Quiz Ques
 
 
 // end brcket for document.ready -don't erase
-});
+})
