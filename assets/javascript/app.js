@@ -1,5 +1,5 @@
 $(document).ready(function() {
-//Quiz data
+//Quiz data - how the fuck do I step through this? for loop not cutting it in way I've written the program flow.
 var quizMaterialArr = [
     {
       id: "1",
@@ -12,7 +12,6 @@ var quizMaterialArr = [
       },
       correctAnswer: "b"
     },
-    /*
     {
       id: "2",
       question: "When did Julius Caesar cross the Rubicon?",
@@ -36,17 +35,82 @@ var quizMaterialArr = [
       correctAnswer: "d"
     },
     {
-        id: "4",
-        question: "Who was the lead singer for the Ramones?",
-        answers: {
-          a: "Dee Dee",
-          b: "Johnny",
-          c: "Joey",
-          d: "Kurt"
+      id: "4",
+      question: "Which of the following empires had no written language? ",
+      answers: {
+        a: "Incan",
+        b: "Babylonian",
+        c: "Tang Dynasty",
+        d: "Aztec"
+      },
+      correctAnswer: "a"
+    },
+    {
+      id: "5",
+      question: "How many witches died at the stake during the Salem Witch Trials?",
+      answers: {
+        a: "10",
+        b: "19",
+        c: "0",
+        d: "2"
+      },
+      correctAnswer: "c"
+    },
+    {
+      id: "6",
+      question: "Which Greek City-State fought the Persian Army at Thermopylae?",
+      answers: {
+        a: "Athens",
+        b: "Sparta",
+        c: "Thebes",
+        d: "Minos"
+      },
+      correctAnswer: "b"
+    },
+    {   
+      id: "7",
+      question: "Mount Vesuvius destroyed the city of Pompeii in the year? ",
+      answers: {
+        a: "79 CE",
+        b: "69 CE",
+        c: "79 BCE",
+        d: "42 BC"
+      },
+      correctAnswer: "a"
+    },
+    {   
+      id: "8",
+      question: "What was the last battle of the Napoleonic Wars?",
+      answers: {
+        a: "Trafalgar",
+        b: "Waterloo",
+        c: "Brandenburg",
+        d: "Wavre"
+      },
+      correctAnswer: "d"
+    },
+    {    
+      id: "9",
+      question: "Which English king did William Wallace fight against?",
+      answers: {
+          a: "Edward II",
+          b: "Richard I",
+          c: "Edward I",
+          d: "Henry I"
         },
-        correctAnswer: "c"
-      }
-      */
+      correctAnswer: "c"
+    },
+    {    
+      id: "10",
+      question: "Who was the first Prime Minister of the United Kingdom?",
+      answers: {
+        a: "George Grenville",
+        b: "Robert Walpole",
+        c: "Henry Pelham",
+        d: "Winston Churchill"
+      },
+      correctAnswer: "b"
+    }    
   ];
 
 /* Variables */
@@ -61,16 +125,20 @@ var answerCStr = "";
 var answerDStr = "";
 var correctAnswerStr = "";
 var positionId = "";
+var quizIndexInt = 0;
 
 /* Event Handlers */
 
 $("#start").click(function() {
+    correctCountInt = 0;
+    incorrectCountInt = 0;
     $("#gametimer").text(secondsLeftInt);
     $("#goodanswer").text(correctCountInt);
     $("#badanswer").text(incorrectCountInt);
     buildQuiz();
     startCountdown();
-    // disable start button
+    // need to add code to disable start button
+    // fix timer issues 
 });
 
 $("#end").click(function() {
@@ -79,7 +147,7 @@ $("#end").click(function() {
   $("#badanswer").text(incorrectCountInt);
     endCountdown();
     resetGame();
-    // enable start button
+    // need to add code to enable start button
 });
 
 $("#submitbtn").click(function() {
@@ -111,7 +179,6 @@ function resetGame() {
   var correctAnswerStr = "";
   $("#goodanswer").text(correctCountInt);
   $("#badanswer").text(incorrectCountInt);
-
 }
 
 function evalSubmission(){
@@ -122,28 +189,60 @@ function evalSubmission(){
     $("#gametimer").text("Correct");
     correctCountInt = correctCountInt + 1;
     $("#goodanswer").text(correctCountInt)
-    removeHTML();
-    buildQuiz();
-    // startCountdown();
+    quizIndexInt++;
+    console.log("ln 129 correct sub ----quiz index:" + quizIndexInt);
+    if (quizIndexInt === quizMaterialArr.length) {
+      $("#gametimer").text("Game Over!");
+      $("#goodanswer").text(correctCountInt);
+      $("#badanswer").text(incorrectCountInt);
+      removeHTML();
+      endCountdown();
+      resetGame();
+    }
+    else {
+      //create separate function to "restart" ????
+      removeHTML();
+      startCountdown();
+      buildQuiz();
+      // startCountdown(); ? if I include this, I get a stack overflow
+    }
   }
   else {
     $("#gametimer").text("Incorrect");
     incorrectCountInt = incorrectCountInt + 1;
     $("#badanswer").text(incorrectCountInt)
-    removeHTML();
-    buildQuiz();
+    quizIndexInt++;
+    console.log("ln 142 incorrect sub----quiz index:" + quizIndexInt);
+    if (quizIndexInt === quizMaterialArr.length) {
+      $("#gametimer").text("Game Over!");
+      $("#goodanswer").text(correctCountInt);
+      $("#badanswer").text(incorrectCountInt);
+      removeHTML();
+      endCountdown();
+      resetGame();
+    }
+    else {
+      //create separate function to "restart" ????
+      removeHTML();
+      startCountdown();
+      buildQuiz();
+      // startCountdown(); ? if I include this, I get a stack overflow
+    }
   }
 }
 
 function gameTimer() {
   if (secondsLeftInt === 0) {
     $("#gametimer").text("Time's Up!");
-    console.log("Time's Up");
     endCountdown();
     incorrectCountInt = incorrectCountInt + 1;
     $("#badanswer").text(incorrectCountInt)
+    quizIndexInt++;
+    console.log("ln 129 ----quiz index:" + quizIndexInt);
     removeHTML();
-    // buildQuiz(); how to refresh page w/o stack overflow
+    gameTimer();
+    buildQuiz();
+   
     }
   else {
     secondsLeftInt --;
@@ -151,23 +250,27 @@ function gameTimer() {
     $("#gametimer").text(secondsLeftInt);
     }
 }
-/*
-function gamePause() {
-  var pauseState = setTimeout(function 3000);
 
-   // $("#gametimer").text("3 sec pause");
-}
-function gameUnpause() {
-  setTimeout(pauseState);
-   // $("#gametimer").text("3 sec pause");
-}
-*/
-function showResults(){
-    var $quizContainer = $("#quizdiv").html();
-    var $resultsContainer = $("#resultsdiv").html();
-    $("#quiz").text($quizContainer);
-    $("#results").text($resultsContainer);
-}
+function buildQuiz() {  // should I abandon this for loop and keep track of the index[] myself? 
+
+    quizQuestionStr = quizMaterialArr[quizIndexInt].question;
+    answerAStr = quizMaterialArr[quizIndexInt].answers.a;
+    answerBStr = quizMaterialArr[quizIndexInt].answers.b;
+    answerCStr = quizMaterialArr[quizIndexInt].answers.c;
+    answerDStr = quizMaterialArr[quizIndexInt].answers.d;
+    correctAnswerStr = quizMaterialArr[quizIndexInt].correctAnswer;
+    /*
+    console.log(quizQuestionStr);
+    console.log(answerAStr);
+    console.log(answerBStr);
+    console.log(answerCStr);
+    console.log(answerDStr);
+    console.log(correctAnswerStr);
+    console.log(positionId);
+   */
+    buildHTML();
+    gameTimer();
+  }
 
 function buildHTML() {
   $("#question").html('<p id="question' + positionId + '">' + quizQuestionStr + '</p>');
@@ -181,7 +284,6 @@ function buildHTML() {
   '<label for="q' + positionId + 'answer" value="d">' + answerDStr + '</label>');
   // $("submitdiv").html('<button id="submitbtn" type="button" class="button btn btn-primary">Submit</button>'); 
   }
-
   function removeHTML() {
     $("#question").html("");
     $("#answerA").html("");
@@ -198,50 +300,7 @@ function buildHTML() {
   $("#answerD").hide();
   }
 */
-function buildQuiz() {
-
-  for (var i = 0; i < quizMaterialArr.length; i++) { 
-    positionId = i;
-    quizQuestionStr = quizMaterialArr[i].question;
-    answerAStr = quizMaterialArr[i].answers.a;
-    answerBStr = quizMaterialArr[i].answers.b;
-    answerCStr = quizMaterialArr[i].answers.c;
-    answerDStr = quizMaterialArr[i].answers.d;
-    correctAnswerStr = quizMaterialArr[i].correctAnswer;
-    /*
-    console.log(quizQuestionStr);
-    console.log(answerAStr);
-    console.log(answerBStr);
-    console.log(answerCStr);
-    console.log(answerDStr);
-    console.log(correctAnswerStr);
-    console.log(positionId);
-   */
-    buildHTML();
-    gameTimer();
-  }
-}
-/*
-
-quizMaterialArr[i].question  - <p id="quizquestion"class="displayfont">Quiz Question  #1</p>
-    console.log(quizMaterialArr[i].answers.a);
-
-  }
-   for(letter in questions[i].answers){
-
-    // ...add an html radio button
-    answers.push(
-      '<label>'
-        + '<input type="radio" name="question'+i+'" value="'+letter+'">'
-        + letter + ': '
-        + questions[i].answers[letter]
-      + '</label>'
-    );
-  }
-} 
-
-*/
 
 
 // end brcket for document.ready -don't erase
-})
+});
