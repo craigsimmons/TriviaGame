@@ -1,0 +1,40 @@
+* {
+    border: 1px solid yellow !important;
+}
+
+.cardbase {
+    background-color: #bbbbbb;
+    max-width: 600px;
+    max-height: 750px;
+}
+
+.labelfont {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    display: inline;
+}
+
+.displayfont {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    color: blue;
+    display: inline
+}
+
+.center {
+    margin: auto 0;
+    width: 100%;
+}
+
+.timerfont {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 42px;
+    font-weight: bold;
+    color: blue;
+}
+
+.button {
+    padding: 10px 20px;
+    
+}

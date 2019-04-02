@@ -15,39 +15,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Baloo" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
-
-<style>
-* {
-    border: 1px solid yellow;
-}
-</style>
-
+    <!-- <link rel="stylesheet" href="./assets/css/reset.css">   -->
 </head> 
 
 <body>
     <div class="container">
-        <div class="setwidth header-bar row">
-            <div class="lefty"></div>
-            <div class="centery">
-                <h1 class="display-4 mainheader">Historical Triva - Online</h1>
+        <div class="card cardbase">
+            <div class="center card-header">
+                <h1 class="card-title text-center display-3">Trivia Game</h1>
             </div>
-            <div class="righty"></div>
-        </div>
-        <div class="setwidth row">
-            <div class="left-pane col-md">
-                <div class="row timerrow">
-                    <div class="col-md-6">
-                        <p id="gametimer" class="display-3 text-center timerfont">20</p>
-                    </div>
-                    <div class="col-md-6">
-                        <img id="greencheck" class="redgreen" alt="image of green check mark" src="./assets/images/correct.png" height="75px" width="75px">
-                    </div>
-                </div>
+            <div class="card-body">
                 <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-11">
+                    <div class="center col-sm-6">
+                        <p id="gametimer" class="text-center timerfont"></p>
+                    </div>
+                    <div class="col-sm-6">
                         <p class="labelfont">Correct: </p>
                         <p id="goodanswer" class="displayfont"> 0</p>
                         <br>
@@ -55,36 +38,27 @@
                         <p id="badanswer" class="displayfont"> 0</p>
                     </div>
                 </div>
-                <br>
                 <div id="buttondiv" class="row">
-                    <div class="col-md-4">
-                        <button id="start" type="button" value="Start" class="buttonstart btn">Start</button>
+                    <div class="col-sm-4">
+                        <button id="submitbtn" type="button" class="button btn btn-primary">Submit</button>
                     </div>
-                    <div class="col-md-4">
-                        <button id="end" type="button" value="Reset" class="buttonreset btn">Reset</button>
+                    <div class="col-sm-4">
+                        <button id="start" type="button" class="button btn btn-success">Start</button>
                     </div>
-                    <div class="col-md-4">
-                        <button id="submitbtn" type="button" value="Submit" class="buttonsubmit btn">Submit</button>
-                    </div>
+                    <div class="col-sm-4">
+                        <button id="end" type="button" class="button btn btn-danger">End</button>
+                    </div>   
                 </div>
-                <br>
-            </div>
-            <div class="right-pane col-md">
                 <div id="quizdiv" class="row">
-                    <form class="formset" id="showhide" onsubmit="evalSubmission()">
+                    <form id="showhide" onsubmit="evalSubmission()">
                         <div id="question"></div><br>
                         <div id="answerA"></div><br>
                         <div id="answerB"></div><br>
                         <div id="answerC"></div><br>
                         <div id="answerD"></div><br>
-                    </form>   
-                </div>
-                <div class="row">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-6">
-                            <div id="statusmsg"></div>
-                    </div>
-                    <div class="col-md-3"></div>
+                        <div id="correct"></div><br>
+                        <div id="submitdiv"></div>
+                    </form>
                 </div>
             </div>
         </div>

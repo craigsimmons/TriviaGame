@@ -274,15 +274,15 @@ function buildQuiz() {  // should I abandon this for loop and keep track of the 
 
 function buildHTML() {
   $("#question").html('<p id="question' + positionId + '">' + quizQuestionStr + '</p>');
-  $("#answerA").html('<input type="radio" name="selected" id="q' + positionId + 'answer" value="a">' + 
-  '<label for="q' + positionId + 'answer" value="a">' + answerAStr + '</label>');
-  $("#answerB").html('<input type="radio" name="selected" id="q' + positionId + 'answer" value="b">' + 
-  '<label for="q' + positionId + 'answer" value="b">' + answerBStr + '</label>');
-  $("#answerC").html('<input type="radio" name="selected" id="q' + positionId + 'answer" value="c">' + 
-  '<label for="q' + positionId + 'answer" value="c">' + answerCStr + '</label>');
-  $("#answerD").html('<input type="radio" name="selected" id="q' + positionId + 'answer" value="d">' + 
-  '<label for="q' + positionId + 'answer" value="d">' + answerDStr + '</label>');
-  // $("submitdiv").html('<button id="submitbtn" type="button" class="button btn btn-primary">Submit</button>'); 
+  $("#answerA").html('<input type="radio" name="selected" id="a1' + positionId + 'answer" value="a">' + 
+  '<label for="q' + positionId + 'answer" value="a">' + '  ' + answerAStr + '</label>');
+  $("#answerB").html('<input type="radio" name="selected" id="a2' + positionId + 'answer" value="b">' + 
+  '<label for="q' + positionId + 'answer" value="b">' + '  ' + answerBStr + '</label>');
+  $("#answerC").html('<input type="radio" name="selected" id="a3' + positionId + 'answer" value="c">' + 
+  '<label for="q' + positionId + 'answer" value="c">' + '  ' + answerCStr + '</label>');
+  $("#answerD").html('<input type="radio" name="selected" id="a4' + positionId + 'answer" value="d">' + 
+  '<label for="q' + positionId + 'answer" value="d">' + '  ' + answerDStr + '</label>');
+  // $("submitdiv").html('<button id="submitbtn" type="button" value="Submit" class="button btn">Submit</button>'); 
   }
   function removeHTML() {
     $("#question").html("");

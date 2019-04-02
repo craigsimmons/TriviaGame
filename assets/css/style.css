@@ -1,40 +1,126 @@
-* {
-    border: 1px solid yellow !important;
+
+body {
+    background-color: #000066;
+    font-family: 'Baloo', cursive;
 }
 
-.cardbase {
-    background-color: #bbbbbb;
-    max-width: 600px;
-    max-height: 750px;
+.whitefont {
+    color: whitesmoke;
 }
 
-.labelfont {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 24px;
-    font-weight: bold;
-    display: inline;
+.bluefont {
+    color: #000066;
 }
 
-.displayfont {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 24px;
-    color: blue;
-    display: inline
+.mainheader {
+    color: whitesmoke;
+    text-align: center;
+    padding-top: 25px;
 }
 
-.center {
-    margin: auto 0;
-    width: 100%;
+.header-bar {
+    height: 125px;
+    margin-top: 10px;
 }
 
+.lefty {
+    background-color: #409fbf;
+    width: 2%;
+    display: block;
+    float: left;
+}
+
+.righty {
+    background-color: #00bfff;
+    float: left;
+    width: 2%;
+    display: block;
+}
+
+.centery {
+    float: left;
+    width: 96%;
+    display: block;
+    background-color: #006699;
+}
+
+.left-pane {
+    background-color: #409fbf;
+    height: auto;
+    width: 50%;
+    display: inline-block;
+}
+
+.right-pane {
+    background-color: #00bfff;
+    height: auto;
+    width: 50%;
+    display: inline-block;
+}
 .timerfont {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 42px;
-    font-weight: bold;
-    color: blue;
+    text-align: center;
+    color: whitesmoke;
+    margin: 10px;
+}
+.displayfont {
+    display: inline;
+    color: whitesmoke;
+    font-size: 48px;
+    padding-left: 20px;
+}
+.labelfont {
+    display: inline;
+    color: #000066;
+    font-size: 48px;
 }
 
-.button {
-    padding: 10px 20px;
+.timerrow {
+    max-height: 100px;
+    align-content: center;
+}
+
+.redgreen {
+    align: center;
+    margin: 15px;
+    display: inline-block;
+}
+
+.buttonreset {
+    background-color: #000066;
+    color: whitesmoke;
+
+}
+.buttonstart {
+    background-color: #000066;
+    color: whitesmoke;
+
+}
+.buttonsubmit {
+    background-color: #005500;
+    color: whitesmoke;
+    align-self: center;
+}
+
+.formset {
+    padding-left: 15px;
+}
+
+#question {
+    font-family: 'Baloo', cursive;
+    font-size: 24px;
+    line-height: 24px;
+    color: #000066;
+    padding-top: 15px;
     
+}
+
+#answerA, #answerB, #answerC, #answerD {
+    font-family: 'Baloo', cursive;
+    font-size: 20px;
+    color: #000066;
+    padding-left: 20px;
+}
+
+input[type="radio"] {
+   margin: 0px 10px;
 }
