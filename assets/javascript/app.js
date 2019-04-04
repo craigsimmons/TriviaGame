@@ -116,7 +116,7 @@ var quizMaterialArr = [
 
 /* Variables */
 // Timer vars
-var secondsLeftInt = 15;
+var secondsLeftInt = 10;
 var intervalId;
 // win loss vars
 var correctCountInt = 0;
@@ -169,7 +169,7 @@ $("#end").click(function() {
 // end countdown, reset game and key variables
     endCountdown();
     resetGame();
-    secondsLeftInt = 15;
+    secondsLeftInt = 10;
 });
 
 //event handler for Submit button
@@ -191,7 +191,7 @@ $("#end").attr("disabled", true);
 
 // starts timer countdown. set to 11 (because 10 would start at 9)
 function startCountdown() {
-    secondsLeftInt = 16;
+    secondsLeftInt = 11;
     clearInterval(intervalId);
     intervalId = setInterval(gameTimer, 1000);
 }
@@ -208,7 +208,7 @@ function resetGame() {
  
 // set to 15 (not 16) for display purposes
 //reset key variables
-  var secondsLeftInt = 15;
+  var secondsLeftInt = 10;
   var quizQuestionStr = "";
   var answerAStr = "";
   var answerBStr = "";
