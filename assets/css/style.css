@@ -1,7 +1,12 @@
 
 body {
-    background-color: #000066;
+    background-color: #314e5c;
     font-family: 'Baloo', cursive;
+}
+.main {
+    width: 725px;
+    max-width: 725px;
+    margin: auto;
 }
 
 .whitefont {
@@ -31,7 +36,7 @@ body {
 }
 
 .righty {
-    background-color: #00bfff;
+    background-color: #006699;
     float: left;
     width: 2%;
     display: block;
@@ -41,7 +46,7 @@ body {
     float: left;
     width: 96%;
     display: block;
-    background-color: #006699;
+    background-color: #000066;
 }
 
 .left-pane {
@@ -52,7 +57,7 @@ body {
 }
 
 .right-pane {
-    background-color: #00bfff;
+    background-color: #006699;
     height: auto;
     width: 50%;
     display: inline-block;

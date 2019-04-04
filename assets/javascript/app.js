@@ -314,7 +314,7 @@ function buildQuiz() {
   }
 // Creates and displays quiz data/info dynamically
 function buildHTML() {
-  $("#question").html('<p id="question' + positionId + '">' + quizQuestionStr + '</p>');
+  $("#question").html('<p class="whitefont" id="question' + positionId + '">' + quizQuestionStr + '</p>');
   $("#answerA").html('<input type="radio" name="selected" id="a1' + positionId + 'answer" value="a">' + 
   '<label for="q' + positionId + 'answer" value="a">' + '  ' + answerAStr + '</label>');
   $("#answerB").html('<input type="radio" name="selected" id="a2' + positionId + 'answer" value="b">' + 
