@@ -17,18 +17,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Baloo" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
-
-<style>
-* {
-    border: 1px solid yellow;
-}
-</style>
-
 </head> 
 
 <body>
-    <div class="container">
-        <div class="setwidth header-bar row">
+    <div class="container" min-width="650px" width="675px">
+        <div class="header-bar row">
             <div class="lefty"></div>
             <div class="centery">
                 <h1 class="display-4 mainheader">Historical Triva - Online</h1>
@@ -38,34 +31,33 @@
         <div class="setwidth row">
             <div class="left-pane col-md">
                 <div class="row timerrow">
-                    <div class="col-md-6">
-                        <p id="gametimer" class="display-3 text-center timerfont">20</p>
+                    <div class="col-md-12" height="75px">
+                        <p id="gametimer" class="display-4 text-center timerfont">Press Start</p>
                     </div>
-                    <div class="col-md-6">
-                        <img id="greencheck" class="redgreen" alt="image of green check mark" src="./assets/images/correct.png" height="75px" width="75px">
-                    </div>
+                    
                 </div>
-                <div class="row">
+                <div class="row" height="50px">
                     <div class="col-md-1"></div>
                     <div class="col-md-11">
                         <p class="labelfont">Correct: </p>
-                        <p id="goodanswer" class="displayfont"> 0</p>
-                        <br>
+                        <p id="goodanswer" class="displayfont"> 0</p><br>
                         <p class="labelfont">Incorrect: </p>
                         <p id="badanswer" class="displayfont"> 0</p>
                     </div>
                 </div>
                 <br>
                 <div id="buttondiv" class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
                         <button id="start" type="button" value="Start" class="buttonstart btn">Start</button>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <button id="end" type="button" value="Reset" class="buttonreset btn">Reset</button>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <button id="submitbtn" type="button" value="Submit" class="buttonsubmit btn">Submit</button>
                     </div>
+                    <div class="col-md-2"></div>
                 </div>
                 <br>
             </div>

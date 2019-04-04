@@ -58,20 +58,21 @@ body {
     display: inline-block;
 }
 .timerfont {
+    font-size: 60px;
     text-align: center;
-    color: whitesmoke;
-    margin: 10px;
+    color: #000066;;
+    margin: 5px;
 }
 .displayfont {
     display: inline;
-    color: whitesmoke;
-    font-size: 48px;
+    color: #000066;
+    font-size: 40px;
     padding-left: 20px;
 }
 .labelfont {
     display: inline;
     color: #000066;
-    font-size: 48px;
+    font-size: 40px;
 }
 
 .timerrow {
@@ -79,11 +80,6 @@ body {
     align-content: center;
 }
 
-.redgreen {
-    align: center;
-    margin: 15px;
-    display: inline-block;
-}
 
 .buttonreset {
     background-color: #000066;
@@ -111,7 +107,6 @@ body {
     line-height: 24px;
     color: #000066;
     padding-top: 15px;
-    
 }
 
 #answerA, #answerB, #answerC, #answerD {
@@ -119,8 +114,18 @@ body {
     font-size: 20px;
     color: #000066;
     padding-left: 20px;
+    line-height: 20px;
 }
 
 input[type="radio"] {
    margin: 0px 10px;
+   line-height: 10px;
+}
+
+button:disabled,
+button[disabled] {
+    cursor: not-allowed;
+    pointer-events:none;
+    background-color: #006699;
+    color: #000066;
 }
